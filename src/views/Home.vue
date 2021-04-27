@@ -1,18 +1,37 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <img alt="Vue logo" src="@/assets/logo.png" />
+    <div v-if="error">{{ error }}</div>
+    <ul>
+      <Suspense>
+        <template #default>
+          <li v-for="todo in todos" :key="todo.id">{{ todo.title }}</li>
+        </template>
+        <template #fallback>
+          <div>Loading...</div>
+        </template>
+      </Suspense>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { defineComponent, ref } from "vue";
+import useTodos from "@/composables/todos";
 
 export default defineComponent({
   name: "Home",
-  components: {
-    HelloWorld,
+  async setup() {
+    const error = ref(null);
+    // onErrorCaptured(e => {
+    //   error.value = e
+    //   return true
+    // })}
+    const { todos } = await useTodos();
+
+    console.log(todos.value);
+
+    return { todos, error };
   },
 });
 </script>
