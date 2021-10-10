@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+/* .flat-btn {
+    @apply border border-blue-700 rounded-full flex items-center px-3 text-blue-700
+    transition-colors ease-in-out focus:outline-none
+    hover:border-blue-900 hover:text-blue-900;
+}   */
+@tailwind utilities;
+@layer base {
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="search"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
+    [multiple],
+    textarea,
+    select {
+      @apply border border-gray-300 rounded ring-0 focus:border-teal focus:ring-0;
+    }
+    [type="checkbox"],
+    [type="radio"] {
+      @apply rounded border-gray-400 text-teal
+       focus:ring-teal;
+    }
+    [type="radio"] {
+      @apply rounded-full;
+    }
+  }
+  
